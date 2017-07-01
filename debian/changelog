@@ -1,0 +1,22 @@
+ros-r2b2-joy (1.11.0-2xenial) xenial; urgency=high
+
+  * fixed joy/Cmakelists for osx
+  * Update dependencies to remove warnings
+  * Contributors: Marynel Vazquez, Mark D Horn
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Fri, 10 Feb 2017 05:00:00 -0000
+
+ros-r2b2-joy (1.10.1-2xenial) xenial; urgency=high
+
+  * Remove stray architechture_independent flags
+  * Contributors: Jonathan Bohren, Scott K Logan
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Sun, 24 May 2015 04:00:00 -0000
+
+ros-r2b2-joy (1.10.0-2xenial) xenial; urgency=high
+
+  * First indigo release
+
+ -- Mikael Arguedas <mikael@osrfoundation.org>  Thu, 26 Jun 2014 04:00:00 -0000
+
+
