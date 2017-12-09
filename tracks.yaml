@@ -17,8 +17,8 @@ tracks:
     name: upstream
     patches: null
     release_inc: '4'
-    release_repo_url: git@github.com:nuclearsandwich/joy-release
-    release_tag: ros2
+    release_repo_url: git@github.com:nuclearsandwich/joystick_drivers-release
+    release_tag: 2.0.0
     ros_distro: ardent
     vcs_type: git
     vcs_uri: https://github.com/ros2/joystick_drivers.git
