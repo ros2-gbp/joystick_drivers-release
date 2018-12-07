@@ -2,26 +2,16 @@
 Changelog for package spacenav_node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.1.0 (2018-06-26)
-------------------
-* 2.0.0
-* change package to format2
-  drop ament_ignores in all packages but joy
-* Merge pull request `#109 <https://github.com/ros2/joystick_drivers/issues/109>`_ from honeybee-robotics-forks/indigo-devel
-  Adding tested spacenav scaling
-* Merge pull request `#15 <https://github.com/ros2/joystick_drivers/issues/15>`_ from jprod123/spacenav
-  Spacenav changes
-* Updated README
+1.12.0 (2018-06-11)
+-------------------
+* Adding tested spacenav scaling
 * Added README
-* Merge remote-tracking branch 'space/indigo-devel' into spacenav
-* Merge pull request `#107 <https://github.com/ros2/joystick_drivers/issues/107>`_ from honeybee-robotics-forks/indigo-devel
-  Numerous outstanding PRs.
-* Delete mainpage.dox
+* Addressed numerous outstanding PRs.
 * Changed package xml to format 2
-* spacenav_node: reduce the number of scale params
-* spacenav_node: add a scale parameter to each axis
+* Reduce the number of scale params in spacenav_node
+* Add a scale parameter to each axis in spacenav_node
   Do not apply the scale to the joy topic.
-* Contributors: Gaël Ecorchard, Jonathan Bohren, Mikael Arguedas, jprod123
+* Contributors: Gaël Ecorchard, Jonathan Bohren, jprod123
 
 1.11.0 (2017-02-10)
 -------------------
