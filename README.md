@@ -1,3 +1,32 @@
+## joystick_drivers (dashing) - 2.2.0-1
+
+The packages in the `joystick_drivers` repository were released into the `dashing` distro by running `/usr/bin/bloom-release --rosdistro dashing --track dashing joystick_drivers` on `Wed, 24 Apr 2019 14:41:02 -0000`
+
+The `joy` package was released.
+
+These packages were explicitly ignored:
+- `joystick_drivers`
+- `ps3joy`
+- `spacenav_node`
+- `wiimote`
+
+Version of package(s) in repository `joystick_drivers`:
+
+- upstream repository: https://github.com/ros2/joystick_drivers.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `2.2.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.8.0`
+- catkin_pkg version: `0.4.11`
+- rosdep version: `0.15.1`
+- rosdistro version: `0.7.3`
+- vcstools version: `0.1.40`
+
+
 ## joystick_drivers (crystal) - 2.2.0-1
 
 The packages in the `joystick_drivers` repository were released into the `crystal` distro by running `/usr/bin/bloom-release -r crystal joystick_drivers --override-release-repository-push-url git@github.com:ros2-gbp/joystick_drivers-release` on `Fri, 07 Dec 2018 22:39:52 -0000`
