@@ -1,3 +1,32 @@
+## joystick_drivers (eloquent) - 2.3.2-3
+
+The packages in the `joystick_drivers` repository were released into the `eloquent` distro by running `/usr/bin/bloom-release --track eloquent --rosdistro eloquent joystick_drivers` on `Tue, 01 Oct 2019 18:32:08 -0000`
+
+The `joy` package was released.
+
+These packages were explicitly ignored:
+- `joystick_drivers`
+- `ps3joy`
+- `spacenav_node`
+- `wiimote`
+
+Version of package(s) in repository `joystick_drivers`:
+
+- upstream repository: https://github.com/ros2/joystick_drivers.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `2.3.2-2`
+- new version: `2.3.2-3`
+
+Versions of tools used:
+
+- bloom version: `0.8.0`
+- catkin_pkg version: `0.4.13`
+- rosdep version: `0.16.1`
+- rosdistro version: `0.7.4`
+- vcstools version: `0.1.42`
+
+
 ## joystick_drivers (eloquent) - 2.3.2-2
 
 The packages in the `joystick_drivers` repository were released into the `eloquent` distro by running `/usr/bin/bloom-release -r eloquent joystick_drivers` on `Tue, 01 Oct 2019 15:38:23 -0000`
