@@ -2,6 +2,9 @@
 Changelog for package joystick_drivers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.13.0 (2019-06-24)
+-------------------
+
 1.12.0 (2018-06-11)
 -------------------
 * Addressed numerous outstanding PRs.

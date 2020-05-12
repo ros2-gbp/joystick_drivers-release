@@ -10,28 +10,53 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_ros REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_components REQUIRED)
+find_package(sdl2_vendor REQUIRED)
+find_package(sdl2_custom REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
-# for now, this program only exists for Linux hosts, since it calls into
-# the underlying joystick driver provided by the Linux kernel.
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-  # Look for <linux/joystick.h>
-  include(CheckIncludeFiles)
-  check_include_files(linux/joystick.h HAVE_LINUX_JOYSTICK_H)
+include_directories(include)
+add_library(joy SHARED src/joy.cpp)
+ament_target_dependencies(joy
+  "rclcpp_components"
+  "rclcpp"
+  "sensor_msgs")
+# Need this since sdl2 doesn't properly export its
+# libraries so ament_target_dependencies can find them
+target_link_libraries(joy
+  SDL2::SDL2)
 
-  if(HAVE_LINUX_JOYSTICK_H)
-    include_directories(msg/cpp ${catkin_INCLUDE_DIRS})
-    add_executable(joy_node src/joy_node_linux.cpp)
-    ament_target_dependencies(joy_node
-      "rclcpp"
-      "sensor_msgs")
-    install(TARGETS joy_node DESTINATION lib/${PROJECT_NAME})
-  else()
-    message(FATAL_ERROR "no <linux/joystick.h>; can't build joy node")
-  endif()
+install(TARGETS joy
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+)
 
+rclcpp_components_register_node(joy
+  PLUGIN "joy::Joy"
+  EXECUTABLE joy_node)
+
+add_executable(joy_enumerate_devices
+  src/joy_enumerate_devices.cpp)
+target_link_libraries(joy_enumerate_devices
+  SDL2::SDL2)
+
+install(TARGETS joy_enumerate_devices
+  DESTINATION lib/${PROJECT_NAME})
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION include/${PROJECT_NAME}
+)
+
+install(DIRECTORY config launch
+  DESTINATION share/${PROJECT_NAME})
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  set(ament_cmake_copyright_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
 endif()
 
 ament_package()
