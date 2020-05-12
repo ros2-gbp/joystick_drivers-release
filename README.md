@@ -1,3 +1,35 @@
+## joystick_drivers (foxy) - 2.4.0-1
+
+The packages in the `joystick_drivers` repository were released into the `foxy` distro by running `/usr/bin/bloom-release --track foxy --rosdistro foxy joystick_drivers` on `Tue, 12 May 2020 14:50:52 -0000`
+
+These packages were released:
+- `joy`
+- `joy_linux`
+- `sdl2_vendor`
+
+These packages were explicitly ignored:
+- `joystick_drivers`
+- `ps3joy`
+- `spacenav_node`
+- `wiimote`
+
+Version of package(s) in repository `joystick_drivers`:
+
+- upstream repository: https://github.com/ros-drivers/joystick_drivers.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `2.4.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.7`
+- catkin_pkg version: `0.4.18`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.1`
+- vcstools version: `0.1.42`
+
+
 ## joystick_drivers (eloquent) - 2.3.2-3
 
 The packages in the `joystick_drivers` repository were released into the `eloquent` distro by running `/usr/bin/bloom-release --track eloquent --rosdistro eloquent joystick_drivers` on `Tue, 01 Oct 2019 18:32:08 -0000`
