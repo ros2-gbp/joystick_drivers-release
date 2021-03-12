@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Open Source Robotics Foundation.
+ * Copyright (c) 2008, Willow Garage, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -10,7 +10,7 @@
  *     * Redistributions in binary form must reproduce the above copyright
  *       notice, this list of conditions and the following disclaimer in the
  *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of the copyright holder nor the names of its
+ *     * Neither the name of the Willow Garage, Inc. nor the names of its
  *       contributors may be used to endorse or promote products derived from
  *       this software without specific prior written permission.
  *
@@ -27,28 +27,65 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-// On Windows, we have to be sure that SDL doesn't generate its own main.
-#define SDL_MAIN_HANDLED
-#include <SDL.h>
+#ifndef SPACENAV__SPACENAV_HPP_
+#define SPACENAV__SPACENAV_HPP_
 
-#include <cstdio>
-#include <stdexcept>
+#include <rclcpp/rclcpp.hpp>
 
-int main(int argc, char ** argv)
+#include <geometry_msgs/msg/twist.hpp>
+#include <geometry_msgs/msg/vector3.hpp>
+#include <sensor_msgs/msg/joy.hpp>
+
+#include "spnav.h" // NOLINT
+
+namespace spacenav
 {
-  (void)argc;
-  (void)argv;
 
-  if (SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC) < 0) {
-    fprintf(stderr, "SDL could not be initialized: %s\n", SDL_GetError());
-    return 1;
-  }
-  fprintf(stdout, "Joystick Device ID : Joystick Device Name\n");
-  fprintf(stdout, "-----------------------------------------\n");
-  for (int i = 0; i < SDL_NumJoysticks(); ++i) {
-    fprintf(stdout, "%18d : %s\n", i, SDL_JoystickNameForIndex(i));
-  }
-  SDL_Quit();
+class Spacenav final : public rclcpp::Node
+{
+public:
+  explicit Spacenav(const rclcpp::NodeOptions & options);
 
-  return 0;
-}
+  ~Spacenav();
+
+private:
+  void poll_spacenav();
+
+  OnSetParametersCallbackHandle::SharedPtr callback_handler;
+
+  rclcpp::TimerBase::SharedPtr timer_;
+
+  rclcpp::Publisher<geometry_msgs::msg::Vector3>::SharedPtr publisher_offset;
+
+  rclcpp::Publisher<geometry_msgs::msg::Vector3>::SharedPtr publisher_rot_offset;
+
+  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_twist;
+
+  rclcpp::Publisher<sensor_msgs::msg::Joy>::SharedPtr publisher_joy;
+
+  bool spacenav_is_open = false;
+
+  double full_scale;
+  double linear_scale[3];
+  double angular_scale[3];
+
+  int static_count_threshold;
+  bool zero_when_static;
+  double static_trans_deadband;
+  double static_rot_deadband;
+
+  spnav_event sev;
+  bool joy_stale = false;
+  int no_motion_count = 0;
+  bool motion_stale = false;
+  double normed_vx = 0;
+  double normed_vy = 0;
+  double normed_vz = 0;
+  double normed_wx = 0;
+  double normed_wy = 0;
+  double normed_wz = 0;
+};
+
+}  // namespace spacenav
+
+#endif  // SPACENAV__SPACENAV_HPP_
