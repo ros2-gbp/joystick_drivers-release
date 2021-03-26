@@ -1,3 +1,36 @@
+## joystick_drivers (rolling) - 3.0.0-4
+
+The packages in the `joystick_drivers` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --track rolling --rosdistro rolling joystick_drivers` on `Fri, 26 Mar 2021 12:17:24 -0000`
+
+These packages were released:
+- `joy`
+- `joy_linux`
+- `sdl2_vendor`
+- `spacenav`
+- `wiimote`
+- `wiimote_msgs`
+
+These packages were explicitly ignored:
+- `joystick_drivers`
+- `ps3joy`
+
+Version of package(s) in repository `joystick_drivers`:
+
+- upstream repository: https://github.com/ros-drivers/joystick_drivers.git
+- release repository: https://github.com/ros2-gbp/joystick_drivers-release.git
+- rosdistro version: `3.0.0-3`
+- old version: `3.0.0-3`
+- new version: `3.0.0-4`
+
+Versions of tools used:
+
+- bloom version: `0.10.3`
+- catkin_pkg version: `0.4.23`
+- rosdep version: `0.20.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## joystick_drivers (rolling) - 3.0.0-3
 
 The packages in the `joystick_drivers` repository were released into the `rolling` distro by running `/home/cottsay/.local/bin/bloom-release joystick_drivers -r rolling` on `Tue, 16 Mar 2021 19:14:58 -0000`
