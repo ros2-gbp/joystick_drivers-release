@@ -27,13 +27,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <SDL.h>
-
-#include <rclcpp/rclcpp.hpp>
-#include <rclcpp_components/register_node_macro.hpp>
-#include <sensor_msgs/msg/joy.hpp>
-#include <sensor_msgs/msg/joy_feedback.hpp>
-
 #include <algorithm>
 #include <chrono>
 #include <functional>
@@ -42,6 +35,13 @@
 #include <stdexcept>
 #include <string>
 #include <thread>
+
+#include <SDL.h>
+
+#include <rclcpp/rclcpp.hpp>
+#include <rclcpp_components/register_node_macro.hpp>
+#include <sensor_msgs/msg/joy.hpp>
+#include <sensor_msgs/msg/joy_feedback.hpp>
 
 #include "joy/joy.hpp"
 
@@ -308,6 +308,7 @@ void Joy::handleJoyDeviceAdded(const SDL_Event & e)
       RCLCPP_WARN(get_logger(), "Failed to get the number of joysticks: %s", SDL_GetError());
       return;
     }
+    bool matching_device_found = false;
     for (int i = 0; i < num_joysticks; ++i) {
       const char * name = SDL_JoystickNameForIndex(i);
       if (name == nullptr) {
@@ -316,9 +317,16 @@ void Joy::handleJoyDeviceAdded(const SDL_Event & e)
       }
       if (std::string(name) == dev_name_) {
         // We found it!
+        matching_device_found = true;
         dev_id_ = i;
         break;
       }
+    }
+    if (!matching_device_found) {
+      RCLCPP_WARN(
+        get_logger(), "Could not get joystick with name %s: %s",
+        dev_name_.c_str(), SDL_GetError());
+      return;
     }
   }
 
