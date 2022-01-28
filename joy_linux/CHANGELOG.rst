@@ -2,6 +2,14 @@
 Changelog for package joy
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
+3.1.0 (2022-01-28)
+------------------
+* Style fixes for newer cpplint.
+* Contributors: Chris Lalancette
+
+3.0.1 (2022-01-28)
+------------------
+
 3.0.0 (2021-03-12)
 ------------------
 * Update joy_linux_node.cpp (`#189 <https://github.com/ros-drivers/joystick_drivers/issues/189>`_)
