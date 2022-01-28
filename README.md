@@ -1,3 +1,36 @@
+## joystick_drivers (galactic) - 3.0.1-1
+
+The packages in the `joystick_drivers` repository were released into the `galactic` distro by running `/usr/bin/bloom-release --track galactic --rosdistro galactic joystick_drivers` on `Fri, 28 Jan 2022 16:37:01 -0000`
+
+These packages were released:
+- `joy`
+- `joy_linux`
+- `sdl2_vendor`
+- `spacenav`
+- `wiimote`
+- `wiimote_msgs`
+
+These packages were explicitly ignored:
+- `joystick_drivers`
+- `ps3joy`
+
+Version of package(s) in repository `joystick_drivers`:
+
+- upstream repository: https://github.com/ros-drivers/joystick_drivers.git
+- release repository: https://github.com/ros2-gbp/joystick_drivers-release.git
+- rosdistro version: `3.0.0-5`
+- old version: `3.0.0-5`
+- new version: `3.0.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.7`
+- catkin_pkg version: `0.4.24`
+- rosdep version: `0.21.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## joystick_drivers (foxy) - 3.0.1-1
 
 The packages in the `joystick_drivers` repository were released into the `foxy` distro by running `/usr/bin/bloom-release --track foxy --rosdistro foxy joystick_drivers` on `Fri, 28 Jan 2022 16:34:42 -0000`
