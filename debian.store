@@ -1,1 +1,1 @@
-{"base": "18b6a06", "parent": "debian/rolling/wiimote_msgs", "previous": "6ad7c14", "trim": "", "trimbase": ""}
+{"base": "166211d", "parent": "debian/humble/wiimote_msgs", "previous": "68f22ac", "trim": "", "trimbase": ""}
