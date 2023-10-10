@@ -30,9 +30,11 @@
 #ifndef SPACENAV__SPACENAV_HPP_
 #define SPACENAV__SPACENAV_HPP_
 
+#include <vector>
 #include <rclcpp/rclcpp.hpp>
 
 #include <geometry_msgs/msg/twist.hpp>
+#include <geometry_msgs/msg/twist_stamped.hpp>
 #include <geometry_msgs/msg/vector3.hpp>
 #include <sensor_msgs/msg/joy.hpp>
 
@@ -59,6 +61,8 @@ private:
 
   rclcpp::Publisher<geometry_msgs::msg::Vector3>::SharedPtr publisher_rot_offset;
 
+  rclcpp::Publisher<geometry_msgs::msg::TwistStamped>::SharedPtr publisher_twist_stamped;
+
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_twist;
 
   rclcpp::Publisher<sensor_msgs::msg::Joy>::SharedPtr publisher_joy;
@@ -73,6 +77,7 @@ private:
   bool zero_when_static;
   double static_trans_deadband;
   double static_rot_deadband;
+  bool use_twist_stamped;
 
   spnav_event sev;
   bool joy_stale = false;
@@ -84,6 +89,9 @@ private:
   double normed_wx = 0;
   double normed_wy = 0;
   double normed_wz = 0;
+
+  // We'll resize dynamically to support spacenav devices with more buttons.
+  std::vector<int> joystick_buttons = {0, 0};
 };
 
 }  // namespace spacenav
