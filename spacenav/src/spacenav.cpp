@@ -56,6 +56,7 @@
 #define SPACENAV_ZERO_WHEN_STATIC_PARAM_S "zero_when_static"
 #define SPACENAV_STATIC_TRANS_DEADBAND_PARAM_S "static_trans_deadband"
 #define SPACENAV_STATIC_ROT_DEADBAND_PARAM_S "static_rot_deadband"
+#define SPACENAV_USE_TWIST_STAMPED_PARAM_S "use_twist_stamped"
 
 using namespace std::chrono_literals;
 
@@ -91,6 +92,7 @@ Spacenav::Spacenav(const rclcpp::NodeOptions & options)
   // translation, or both.
   this->declare_parameter<double>(SPACENAV_STATIC_TRANS_DEADBAND_PARAM_S, 0.1);
   this->declare_parameter<double>(SPACENAV_STATIC_ROT_DEADBAND_PARAM_S, 0.1);
+  use_twist_stamped = this->declare_parameter<bool>(SPACENAV_USE_TWIST_STAMPED_PARAM_S, false);
 
   auto param_change_callback = [this](
     std::vector<rclcpp::Parameter> parameters) {
@@ -117,8 +119,13 @@ Spacenav::Spacenav(const rclcpp::NodeOptions & options)
     "spacenav/offset", 10);
   publisher_rot_offset = this->create_publisher<geometry_msgs::msg::Vector3>(
     "spacenav/rot_offset", 10);
-  publisher_twist =
-    this->create_publisher<geometry_msgs::msg::Twist>("spacenav/twist", 10);
+  if (use_twist_stamped) {
+    publisher_twist_stamped =
+      this->create_publisher<geometry_msgs::msg::TwistStamped>("spacenav/twist_stamped", 10);
+  } else {
+    publisher_twist =
+      this->create_publisher<geometry_msgs::msg::Twist>("spacenav/twist", 10);
+  }
   publisher_joy =
     this->create_publisher<sensor_msgs::msg::Joy>("spacenav/joy", 10);
 
@@ -246,10 +253,20 @@ void Spacenav::poll_spacenav()
         break;
 
       case SPNAV_EVENT_BUTTON:
-        if (sev.button.bnum >= static_cast<int>(msg_joystick->buttons.size())) {
-          msg_joystick->buttons.resize(sev.button.bnum + 1);
+
+        if (sev.button.bnum < 0) {
+          RCLCPP_WARN(
+            get_logger(), "Negative spacenav buttons not supported. Got %i", sev.button.bnum);
+          break;
         }
-        msg_joystick->buttons[sev.button.bnum] = sev.button.press;
+        if (sev.button.bnum < static_cast<int>(joystick_buttons.size())) {
+          // Update known buttons
+          joystick_buttons[sev.button.bnum] = sev.button.press;
+        } else {
+          // Enlarge, fill up with zeros, and support the new button
+          joystick_buttons.resize(sev.button.bnum + 1, 0);
+          joystick_buttons[sev.button.bnum] = sev.button.press;
+        }
         joy_stale = true;
         break;
 
@@ -278,7 +295,14 @@ void Spacenav::poll_spacenav()
 
       publisher_offset->publish(std::move(msg_offset));
       publisher_rot_offset->publish(std::move(msg_rot_offset));
-      publisher_twist->publish(std::move(msg_twist));
+      if (use_twist_stamped) {
+        auto msg_twist_stamped = std::make_unique<geometry_msgs::msg::TwistStamped>();
+        msg_twist_stamped->header.stamp = msg_joystick->header.stamp;
+        msg_twist_stamped->twist = *msg_twist;
+        publisher_twist_stamped->publish(std::move(msg_twist_stamped));
+      } else {
+        publisher_twist->publish(std::move(msg_twist));
+      }
 
       no_motion_count = 0;
       motion_stale = false;
@@ -293,6 +317,7 @@ void Spacenav::poll_spacenav()
       msg_joystick->axes[3] = normed_wx;
       msg_joystick->axes[4] = normed_wy;
       msg_joystick->axes[5] = normed_wz;
+      msg_joystick->buttons = joystick_buttons;
       publisher_joy->publish(std::move(msg_joystick));
     }
   }
