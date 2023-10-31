@@ -2,6 +2,9 @@
 Changelog for package wiimote
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+3.3.0 (2023-10-31)
+------------------
+
 3.2.0 (2023-10-10)
 ------------------
 * Revert "Fix dependency issues." (`#259 <https://github.com/ros-drivers/joystick_drivers/issues/259>`_)
