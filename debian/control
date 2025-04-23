@@ -1,0 +1,13 @@
+Source: ros-kilted-joy
+Section: misc
+Priority: optional
+Maintainer: Chris Lalancette <clalancette@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), ros-kilted-ament-cmake-ros, ros-kilted-ament-lint-auto <!nocheck>, ros-kilted-ament-lint-common <!nocheck>, ros-kilted-rclcpp, ros-kilted-rclcpp-components, ros-kilted-sdl2-vendor, ros-kilted-sensor-msgs, ros-kilted-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-joy
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kilted-rclcpp, ros-kilted-rclcpp-components, ros-kilted-sdl2-vendor, ros-kilted-sensor-msgs, ros-kilted-ros-workspace
+Description: The joy package contains joy_node, a node that interfaces a generic joystick to ROS 2.
+ This node publishes a "Joy" message, which contains the current state of each one of the joystick's buttons and axes.
