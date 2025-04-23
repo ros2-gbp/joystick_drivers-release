@@ -1,1 +1,1 @@
-{"base": "f6fcd49", "parent": "debian/rolling/sdl2_vendor", "previous": "5747d02", "trim": "", "trimbase": ""}
+{"base": "0d5011b3bc90", "parent": "debian/kilted/sdl2_vendor", "previous": "2be5d4402411", "trim": "", "trimbase": ""}
