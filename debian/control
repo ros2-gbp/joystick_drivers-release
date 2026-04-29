@@ -1,0 +1,12 @@
+Source: ros-lyrical-sdl2-vendor
+Section: misc
+Priority: optional
+Maintainer: Chris Lalancette <clalancette@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), libsdl2-dev, ros-lyrical-ament-cmake, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/sdl2_vendor/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-sdl2-vendor
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libsdl2-dev, ros-lyrical-ros-workspace
+Description: Vendor library for SDL2.
