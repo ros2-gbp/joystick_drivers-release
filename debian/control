@@ -1,0 +1,13 @@
+Source: ros-lyrical-joy
+Section: misc
+Priority: optional
+Maintainer: Chris Lalancette <clalancette@openrobotics.org>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake-ros, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-rclcpp, ros-lyrical-rclcpp-components, ros-lyrical-sdl2-vendor, ros-lyrical-sensor-msgs, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/joy/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-joy
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-rclcpp, ros-lyrical-rclcpp-components, ros-lyrical-sdl2-vendor, ros-lyrical-sensor-msgs, ros-lyrical-ros-workspace
+Description: The joy package contains joy_node, a node that interfaces a generic joystick to ROS 2.
+ This node publishes a "Joy" message, which contains the current state of each one of the joystick's buttons and axes.
