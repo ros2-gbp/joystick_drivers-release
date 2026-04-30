@@ -290,7 +290,9 @@ tracks:
     - git-bloom-generate -y rosrpm --prefix release/:{ros_distro} :{ros_distro} -i
       :{release_inc} --os-name fedora --skip-keys cwiid cwiid-dev
     - git-bloom-generate -y rosrpm --prefix release/:{ros_distro} :{ros_distro} -i
-      :{release_inc} --os-name rhel --skip-keys cwiid cwiid-dev
+      :{release_inc} --os-name rhel
+    - git-bloom-generate -y rosdynrpm --prefix release/:{ros_distro} :{ros_distro}
+      -i :{release_inc} --require-os fedora rhel
     devel_branch: ros2
     last_version: 3.3.0
     name: joystick_drivers
@@ -364,7 +366,9 @@ tracks:
     - git-bloom-generate -y rosrpm --prefix release/:{ros_distro} :{ros_distro} -i
       :{release_inc} --os-name fedora --skip-keys cwiid cwiid-dev
     - git-bloom-generate -y rosrpm --prefix release/:{ros_distro} :{ros_distro} -i
-      :{release_inc} --os-name rhel --skip-keys cwiid cwiid-dev
+      :{release_inc} --os-name rhel
+    - git-bloom-generate -y rosdynrpm --prefix release/:{ros_distro} :{ros_distro}
+      -i :{release_inc} --require-os fedora rhel
     devel_branch: ros2
     last_version: 3.3.0
     name: joystick_drivers
